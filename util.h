@@ -5,12 +5,12 @@
 #define G (6.6743 * pow(10, -11)) // i like consistency, like mostly using pow
 
 struct Vec2 {
-    double x;
-    double y;
+    long double x;
+    long double y;
 };
 
 struct Object {
-    double mass;
+    long double mass;
     struct Vec2 position;
     struct Vec2 velocity;
 };
@@ -65,8 +65,8 @@ struct Vec2 updateOfPosition(struct Vec2 pos, struct Vec2 vel, double time) { //
 }
 
 // actual manager
-void physicsLoop(struct Object objList[], int numOfObj, double softener) {
-    double dt = 0.05; // dummy
+void physicsLoop(struct Object objList[], int numOfObj, double softener, double time) {
+    double dt = time; // dummy
     double arr[numOfObj][2][2]; // contains vel and pos respectively, also, this is a vla, so, only for new compilers
     struct timespec start;
     clock_gettime(CLOCK_MONOTONIC, &start); // dummy
