@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include "util.h"
-#define SOFT 10
-#define MAX 10000000
-#define OBJS 2
+#define SOFT 1000
+#define MAX 100000
+#define OBJS 1000
 
 struct Vec2 getRandomVector(long int max) {
     struct Vec2 vec;
@@ -19,8 +19,8 @@ int main() {
         struct Object obj;
         obj.position = getRandomVector(MAX);
         obj.velocity = getRandomVector(MAX);
-        obj.mass = rand() % MAX;
+        obj.mass = (rand() % MAX) + 1;
         objs[i] = obj;
     }
-    physicsLoop(objs, OBJS, SOFT, 0.05);
+    physicsLoop(objs, OBJS, SOFT, 0.0001);
 }

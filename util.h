@@ -67,7 +67,7 @@ struct Vec2 updateOfPosition(struct Vec2 pos, struct Vec2 vel, double time) { //
 // actual manager
 void physicsLoop(struct Object objList[], int numOfObj, double softener, double time) {
     double dt = time; // dummy
-    double arr[numOfObj][2][2]; // contains vel and pos respectively, also, this is a vla, so, only for new compilers
+    long double arr[numOfObj][2][2]; // contains vel and pos respectively, also, this is a vla, so, only for new compilers
     struct timespec start;
     clock_gettime(CLOCK_MONOTONIC, &start); // dummy
     struct timespec end;
