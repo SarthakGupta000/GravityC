@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
-#define G (6.6743 * pow(10, -11)) // i like consistency, like mostly using pow
+
+long double G = 6.6743e-11;
 
 struct Vec2 {
     long double x;
@@ -87,6 +88,9 @@ void physicsLoop(struct Object objList[], int numOfObj, double softener, double 
                 arr[i][0][1] = vel.y;
                 arr[i][1][0] = pos.x;
                 arr[i][1][1] = pos.y;
+            }
+            for (int j = 0; j < numOfObj; j++) {
+                printf("position of obj%d is (%Lf, %Lf)\n", j, arr[j][1][0], arr[j][1][1]);
             }
             for (int i = 0; i < numOfObj; i++) {
                 objList[i].velocity.x = arr[i][0][0];
