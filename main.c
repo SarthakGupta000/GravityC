@@ -22,5 +22,5 @@ int main() {
         obj.mass = (rand() % MAX) + 1;
         objs[i] = obj;
     }
-    physicsLoop(objs, OBJS, SOFT, 0.0001);
+    physicsLoop(objs, OBJS, SOFT, 0.01, 3600);
 }

@@ -65,8 +65,8 @@ struct Vec2 updateOfPosition(struct Vec2 pos, struct Vec2 vel, double time) { //
 }
 
 // actual manager
-void physicsLoop(struct Object objList[], int numOfObj, double softener, double time) {
-    double dt = time; // dummy
+void physicsLoop(struct Object objList[], int numOfObj, double softener, double timeReal, double timeSim) {
+    double dt = timeReal; // dummy
     long double arr[numOfObj][2][2]; // contains vel and pos respectively, also, this is a vla, so, only for new compilers
     struct timespec start;
     clock_gettime(CLOCK_MONOTONIC, &start); // dummy
@@ -81,8 +81,8 @@ void physicsLoop(struct Object objList[], int numOfObj, double softener, double 
             for (int i = 0; i < numOfObj; i++) {
                 struct Vec2 force = totalForceOnObj(objList, numOfObj, i, softener);
                 struct Vec2 acc = totalAccOnObj(force, objList[i].mass);
-                struct Vec2 vel = updateOfVelocity(objList[i].velocity, acc, dt);
-                struct Vec2 pos = updateOfPosition(objList[i].position, vel, dt);
+                struct Vec2 vel = updateOfVelocity(objList[i].velocity, acc, timeSim);
+                struct Vec2 pos = updateOfPosition(objList[i].position, vel, timeSim);
                 arr[i][0][0] = vel.x;
                 arr[i][0][1] = vel.y;
                 arr[i][1][0] = pos.x;
