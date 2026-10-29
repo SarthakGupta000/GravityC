@@ -4,7 +4,7 @@ long double G = 6.6743e-11;
 
 // adds up all force vectors
 // give result
-struct PhysicsVec2 totalForceOnObj(struct Object objList[], int numOfObj, int idOfCurrentObj, double softener) {
+struct PhysicsVec2 totalForceOnObj(struct PhysicsObject objList[], int numOfObj, int idOfCurrentObj, double softener) {
     struct PhysicsVec2 totalForce;
     totalForce.x = 0;
     totalForce.y = 0;
@@ -52,7 +52,7 @@ struct PhysicsVec2 updateOfPosition(struct PhysicsVec2 pos, struct PhysicsVec2 v
 }
 
 // actual manager
-void physicsIteration(struct Object objList[], int numOfObj, double softener, double dt) {
+void physicsIteration(struct PhysicsObject objList[], int numOfObj, double softener, double dt) {
     // accumulates over time and maintains consistency
     for (int i = 0; i < numOfObj; i++) {
         struct PhysicsVec2 force = totalForceOnObj(objList, numOfObj, i, softener);
